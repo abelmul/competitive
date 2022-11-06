@@ -1,7 +1,3 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
 class NumMatrix {
 private:
     vector<vector<int>> data;
@@ -14,11 +10,7 @@ public:
         for(int i = 0; i < data_column_size; ++i) {
             for (int j = 0; j < data_row_size; ++j) {
                 if (i == 0 && j == 0) continue;
-                
-                int diagonal = (i == 0 || j == 0) ? 0 : data[i-1][j-1];
-                int row_prev = (i == 0) ? 0 : data[i-1][j];
-                int col_prev = (j == 0) ? 0 : data[i][j-1];
-                
+
                 data[i][j] += get_at(i-1, j) + get_at(i, j-1) - get_at(i-1, j-1);
             }
         }
