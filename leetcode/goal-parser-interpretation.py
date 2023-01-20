@@ -6,15 +6,14 @@ class Solution:
         in_parens = False
 
         for c in command:
-            if c == '(':
+            if c == "(":
                 in_parens = True
                 li.append(c)
-            elif c == ')':
+            elif c == ")":
                 in_parens = False
 
-                
-                if li[-1] == '(':
-                    result += 'o'
+                if li[-1] == "(":
+                    result += "o"
                 else:
                     result += "".join(li[1:])
 

@@ -1,10 +1,11 @@
 from functools import cmp_to_key, partial
 
+
 class Solution:
     def compare_by(order, str1, str2):
         if str1 == str2:
             return 0
-        
+
         # calculate length of the strings
         length1 = len(str1)
         length2 = len(str2)
@@ -18,16 +19,13 @@ class Solution:
                 return 1
             elif index1 < index2:
                 return -1
-        
+
         if length == length1:
             return -1
         else:
             return 1
 
-
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         return words == sorted(
-            words, 
-            key=cmp_to_key(partial(Solution.compare_by, order))
+            words, key=cmp_to_key(partial(Solution.compare_by, order))
         )
-

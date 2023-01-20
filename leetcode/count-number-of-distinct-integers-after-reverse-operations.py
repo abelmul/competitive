@@ -3,6 +3,6 @@ class Solution:
         l = set(nums)
 
         for i in nums:
-            l.add(int(str(i)[::-1])) # alternative [::-1]
+            l.add(int(str(i)[::-1]))  # alternative [::-1]
 
         return len(l)

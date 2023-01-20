@@ -1,13 +1,15 @@
 from typing import List
 
+
 def get_distance(p1, p2):
     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
 
 class Solution:
     def nearestValidPoint(self, x: int, y: int, points: List[List[int]]) -> int:
 
         current_pt = [x, y]
-        min_distance = float('inf')
+        min_distance = float("inf")
         result = -1
 
         for i in range(0, len(points)):

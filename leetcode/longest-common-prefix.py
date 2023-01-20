@@ -23,4 +23,3 @@ class Solution:
                 prefix += c
 
         return prefix
-

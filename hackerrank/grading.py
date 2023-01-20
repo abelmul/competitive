@@ -13,33 +13,34 @@ import sys
 # The function accepts INTEGER_ARRAY grades as parameter.
 #
 
+
 def gradingStudents(grades):
     # Write your code here
     l = []
     for grades_item in grades:
         if grades_item >= 38:
-            next_multiple_of_five = ((grades_item//5)+1) * 5
+            next_multiple_of_five = ((grades_item // 5) + 1) * 5
             if next_multiple_of_five - grades_item < 3:
-                grades_item = next_multiple_of_five  
+                grades_item = next_multiple_of_five
         l.append(grades_item)
-        
-    return l
-        
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    return l
+
+
+if __name__ == "__main__":
+    fptr = open(os.environ["OUTPUT_PATH"], "w")
 
     grades_count = int(input().strip())
 
     grades = []
 
     for _ in range(grades_count):
-        grades_item = int(input().strip())      
+        grades_item = int(input().strip())
         grades.append(grades_item)
 
     result = gradingStudents(grades)
 
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
+    fptr.write("\n".join(map(str, result)))
+    fptr.write("\n")
 
     fptr.close()

@@ -1,8 +1,9 @@
 from typing import List
 
+
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:
-        l  = []
+        l = []
         j = n
         for i in range(j):
             n = i + 1
