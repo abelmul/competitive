@@ -1,13 +1,21 @@
 from typing import List
 
+
 class Solution:
-    def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:
+    def queensAttacktheKing(
+        self, queens: List[List[int]], king: List[int]
+    ) -> List[List[int]]:
 
         queens_set = set(tuple(q) for q in queens)
         direction = [
-            (-1,-1), (-1, 0), (-1, 1),
-            (0, -1),          (0, 1),
-            (1,-1),  (1, 0),  (1, 1)
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1),
         ]
 
         attacking_queens = []
