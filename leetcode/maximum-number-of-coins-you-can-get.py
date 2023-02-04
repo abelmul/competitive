@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def maxCoins(self, piles: List[int]) -> int:
         piles.sort()
@@ -11,10 +12,10 @@ class Solution:
 
         while left < right:
             left += 1  # let bob take the left pile
-            right -= 1 # yours will be the left from the right most
+            right -= 1  # yours will be the left from the right most
 
             s += piles[right]
 
-            right -= 1 # alice's will be the right most one
+            right -= 1  # alice's will be the right most one
 
         return s
