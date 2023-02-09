@@ -6,10 +6,26 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        cur_index = m
 
-        for num in nums2:
-            nums1[cur_index] = num
-            cur_index += 1
+        first_pointer, second_pointer = m - 1, n - 1
+        i = m + n - 1
 
-        nums1.sort()
+        while first_pointer >= 0 and second_pointer >= 0:
+            if nums1[first_pointer] > nums2[second_pointer]:
+                nums1[i] = nums1[first_pointer]
+                first_pointer -= 1
+            else:
+                nums1[i] = nums2[second_pointer]
+                second_pointer -= 1
+
+            i -= 1
+
+        while first_pointer >= 0:
+            nums1[i] = nums1[first_pointer]
+            first_pointer -= 1
+            i -= 1
+
+        while second_pointer >= 0:
+            nums1[i] = nums2[second_pointer]
+            second_pointer -= 1
+            i -= 1
