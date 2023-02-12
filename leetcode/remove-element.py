@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
 
@@ -17,4 +18,4 @@ class Solution:
             else:
                 l += 1
 
-        return r+1
+        return r + 1

@@ -1,7 +1,7 @@
 for _ in range(int(input())):
     n = int(input())
     a = list(map(int, input().split()))
-    
+
     l = 0
     r = n - 1
     """
@@ -18,8 +18,8 @@ for _ in range(int(input())):
 
         if a[r] != 0:
             r -= 1
-        
+
         if a[l] != 1:
             l += 1
-        
+
     print(ops)

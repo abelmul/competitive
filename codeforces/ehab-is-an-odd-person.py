@@ -9,10 +9,9 @@ for x in a:
         even = True
     else:
         odd = True
-        
+
     if even and odd:
         a.sort()
         break
-    
+
 print(*a)
-        
