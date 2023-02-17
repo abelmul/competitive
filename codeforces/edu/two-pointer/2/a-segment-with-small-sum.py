@@ -10,5 +10,5 @@ for left in range(n):
 
     current_sum -= a[left]
     max_elems = max(max_elems, right - left)
-    
+
 print(max_elems)
