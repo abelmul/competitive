@@ -8,9 +8,9 @@ bi = 0
 res = []
 
 while ai < n or bi < m:
-    next_element = float('inf')
+    next_element = float("inf")
 
-    if bi == m or (ai < n and  a[ai] < b[bi]):
+    if bi == m or (ai < n and a[ai] < b[bi]):
         res.append(a[ai])
         ai += 1
     else:
