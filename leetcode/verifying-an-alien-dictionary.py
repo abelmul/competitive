@@ -1,8 +1,9 @@
+from typing import List
 from functools import cmp_to_key, partial
 
 
 class Solution:
-    def compare_by(order, str1, str2):
+    def compare_by(self, order, str1, str2):
         if str1 == str2:
             return 0
 
@@ -26,6 +27,4 @@ class Solution:
             return 1
 
     def isAlienSorted(self, words: List[str], order: str) -> bool:
-        return words == sorted(
-            words, key=cmp_to_key(partial(Solution.compare_by, order))
-        )
+        return words == sorted(words, key=cmp_to_key(partial(self.compare_by, order)))

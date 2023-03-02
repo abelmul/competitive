@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def arrayChange(self, nums: List[int], operations: List[List[int]]) -> List[int]:
         d = {n: i for i, n in enumerate(nums)}
