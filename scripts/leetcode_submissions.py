@@ -8,7 +8,7 @@ from os.path import exists, expanduser
 from httpx import Client
 
 # we need the COMPETITIVE_FOLDER and LEETCODE_COOKIE enviromental variables
-competitive_folder = expanduser(os.environ.get("COMPETITIVE_FOLDER", ""))
+competitive_folder = expanduser(os.environ.get("COMPETITIVE_FOLDER", "./leetcode"))
 cookie = os.environ.get("LEETCODE_COOKIE", "")
 
 print(f"changing directory to {competitive_folder}")
@@ -37,10 +37,10 @@ while True:
     response = client.get("/", params=params)
     res = response.json()
 
-    if response.status_code != 200 or len(res) == 0:
+    if response.status_code != 200:
         break
 
-    for submission in res["submissions_dump"]:
+    for submission in reversed(res["submissions_dump"]):
         extension = ""
         if submission["lang"] == "cpp":
             extension = "cpp"
@@ -61,5 +61,9 @@ while True:
                 os.system(f"black {filename}")
             os.system(f"git add {filename}")
             os.system(f'git commit -m "{message}"')
+
+    last_key = res["last_key"]
+    if not res["has_next"]:
+        break
 
     offset += limit
