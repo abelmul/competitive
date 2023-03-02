@@ -7,9 +7,12 @@ from os.path import exists, expanduser
 
 from httpx import Client
 
-# we need the COMPETITIVE_FOLDER and LEETCODE_COOKIE enviromental variables
+# we need the COMPETITIVE_FOLDER, LEETCODE_CSRFTOKEN and LEETCODE_SESSION enviromental variables
 competitive_folder = expanduser(os.environ.get("COMPETITIVE_FOLDER", "./leetcode"))
-cookie = os.environ.get("LEETCODE_COOKIE", "")
+cookies = {
+    "LEETCODE_SESSION": os.environ.get("LEETCODE_SESSION", ""),
+    "csrftoken": os.environ.get("LEETCODE_CSRFTOKEN", ""),
+}
 
 print(f"changing directory to {competitive_folder}")
 os.chdir(competitive_folder)
@@ -19,7 +22,6 @@ client = Client(
     base_url="https://leetcode.com/api/submissions",
     headers={
         "Referer": "https://leetcode.com/submissions",
-        "Cookie": cookie,
     },
 )
 
@@ -34,10 +36,12 @@ while True:
     if last_key:
         params["lastkey"] = last_key
 
-    response = client.get("/", params=params)
+    response = client.get("/", params=params, cookies=cookies)
+    cookies = response.cookies
     res = response.json()
 
     if response.status_code != 200:
+        print(response)
         break
 
     for submission in reversed(res["submissions_dump"]):
