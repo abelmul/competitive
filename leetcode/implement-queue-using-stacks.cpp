@@ -2,46 +2,48 @@
 
 using namespace std;
 
-class MyQueue {
-private:
-    vector<int> push_stack,pop_stack;
-    
-    void move_to_pop_stack() {
-        if(pop_stack.empty()) {
-            while(!push_stack.empty()){
+class MyQueue
+{
+ private:
+    vector<int> push_stack, pop_stack;
+
+    void move_to_pop_stack()
+    {
+        if (pop_stack.empty()) {
+            while (!push_stack.empty()) {
                 pop_stack.push_back(push_stack.back());
                 push_stack.pop_back();
             }
         }
     }
-public:
-    MyQueue() {
+
+ public:
+    MyQueue()
+    {
         push_stack = vector<int>();
         pop_stack = vector<int>();
     }
-    
-    void push(int x) {
-        push_stack.push_back(x);
-    }
-    
-    int pop() {
+
+    void push(int x) { push_stack.push_back(x); }
+
+    int pop()
+    {
         move_to_pop_stack();
-        
+
         int top = pop_stack.back();
         pop_stack.pop_back();
-        
+
         return top;
     }
-    
-    int peek() {
+
+    int peek()
+    {
         move_to_pop_stack();
-        
+
         return pop_stack.back();
     }
-    
-    bool empty() {
-        return push_stack.empty() && pop_stack.empty();
-    }
+
+    bool empty() { return push_stack.empty() && pop_stack.empty(); }
 };
 
 /**

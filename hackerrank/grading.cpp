@@ -12,15 +12,16 @@ string rtrim(const string &);
  * The function accepts INTEGER_ARRAY grades as parameter.
  */
 
-vector<int> gradingStudents(vector<int> grades) {
+vector<int> gradingStudents(vector<int> grades)
+{
     vector<int> new_grades;
-    
-    for(int grade : grades) {
+
+    for (int grade : grades) {
         if (grade < 38) {
             new_grades.push_back(grade);
         } else {
-            int next_multiple_of_five = ((grade/5) + 1) * 5;
-            
+            int next_multiple_of_five = ((grade / 5) + 1) * 5;
+
             if (next_multiple_of_five - grade < 3) {
                 new_grades.push_back(next_multiple_of_five);
             } else {
@@ -28,7 +29,7 @@ vector<int> gradingStudents(vector<int> grades) {
             }
         }
     }
-    
+
     return new_grades;
 }
 
@@ -69,24 +70,23 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+    s.erase(s.begin(),
+            find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }

@@ -1,47 +1,48 @@
 #include <bits/stdc++.h>
+using namespace std;
 
-class MinStack {
-private:
+class MinStack
+{
+ private:
     std::vector<int> data;
     int min;
-public:
-    MinStack() {
+
+ public:
+    MinStack()
+    {
         data = std::vector<int>();
         min = std::numeric_limits<int>::max();
     }
-    
-    void push(int val) {
+
+    void push(int val)
+    {
         data.push_back(val);
-        
+
         if (min > val) {
             min = val;
         }
     }
-    
-    void pop() {
+
+    void pop()
+    {
         int top = this->top();
-             
+
         data.pop_back();
-        
+
         if (top == min) {
             min = std::numeric_limits<int>::max();
             if (data.size() > 0) {
-                for(int d : data) {
+                for (int d : data) {
                     if (min > d)
                         min = d;
                 }
             }
         }
-        
     }
-    
-    int top() {
-        return data.back();
-    }
-    
-    int getMin() {
-        return min;
-    }
+
+    int top() { return data.back(); }
+
+    int getMin() { return min; }
 };
 
 /**

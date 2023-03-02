@@ -13,15 +13,16 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-vector<int> countingSort(vector<int> arr) {
+vector<int> countingSort(vector<int> arr)
+{
     vector<int> counts = vector<int>(100);
 
-    for(int n:arr) {
-      counts[n]++;
+    for (int n : arr) {
+        counts[n]++;
     }
 
-    for(int n: counts) {
-      std::cout << n << ' ';
+    for (int n : counts) {
+        std::cout << n << ' ';
     }
     std::cout << "\n";
 
@@ -67,29 +68,29 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+    s.erase(s.begin(),
+            find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }
 
-vector<string> split(const string &str) {
+vector<string> split(const string &str)
+{
     vector<string> tokens;
 
     string::size_type start = 0;

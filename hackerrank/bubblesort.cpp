@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -13,7 +12,8 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY a as parameter.
  */
 
-void countSwaps(vector<int> a) {
+void countSwaps(vector<int> a)
+{
     size_t n = a.size();
     int swaps = 0;
     for (int i = 0; i < n; i++) {
@@ -24,9 +24,8 @@ void countSwaps(vector<int> a) {
                 ++swaps;
             }
         }
-                                                        
     }
-    
+
     std::cout << "Array is sorted in " << swaps << " swaps.\n";
     std::cout << "First Element: " << a.front() << "\n";
     std::cout << "Last Element: " << a.back() << "\n";
@@ -57,29 +56,29 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+    s.erase(s.begin(),
+            find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }
 
-vector<string> split(const string &str) {
+vector<string> split(const string &str)
+{
     vector<string> tokens;
 
     string::size_type start = 0;

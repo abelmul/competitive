@@ -6,12 +6,13 @@ string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
-void print_vector(int n, vector<int>& arr) {
+void print_vector(int n, vector<int> &arr)
+{
     std::cout << arr[0];
-    for(int i = 1; i < n; ++i) {
+    for (int i = 1; i < n; ++i) {
         std::cout << " " << arr[i];
     }
-    std::cout <<"\n";
+    std::cout << "\n";
 }
 
 /*
@@ -22,18 +23,18 @@ void print_vector(int n, vector<int>& arr) {
  *  2. INTEGER_ARRAY arr
  */
 
-void insertionSort1(int n, vector<int> arr) {
-    int element = arr[n-1];
-    int index = n-2;
+void insertionSort1(int n, vector<int> arr)
+{
+    int element = arr[n - 1];
+    int index = n - 2;
 
-    while(index >= 0 && arr[index] >= element) {
-      arr[index+1] = arr[index];
-      --index;
-      print_vector(n, arr);
+    while (index >= 0 && arr[index] >= element) {
+        arr[index + 1] = arr[index];
+        --index;
+        print_vector(n, arr);
     }
-    arr[index+1] = element;
+    arr[index + 1] = element;
     print_vector(n, arr);
-
 }
 
 int main()
@@ -61,29 +62,29 @@ int main()
     return 0;
 }
 
-string ltrim(const string &str) {
+string ltrim(const string &str)
+{
     string s(str);
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
-    );
+    s.erase(s.begin(),
+            find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
     return s;
 }
 
-string rtrim(const string &str) {
+string rtrim(const string &str)
+{
     string s(str);
 
     s.erase(
         find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end()
-    );
+        s.end());
 
     return s;
 }
 
-vector<string> split(const string &str) {
+vector<string> split(const string &str)
+{
     vector<string> tokens;
 
     string::size_type start = 0;

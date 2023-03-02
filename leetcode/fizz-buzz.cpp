@@ -1,11 +1,13 @@
-#include <vector>
-#include <string>
+#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
-public:
-    vector<string> fizzBuzz(int n) {
+class Solution
+{
+ public:
+    vector<string> fizzBuzz(int n)
+    {
         vector<string> a;
-        for(int i = 1; i < n+1; ++i) {
+        for (int i = 1; i < n + 1; ++i) {
             if (i % 15 == 0) {
                 a.push_back("FizzBuzz");
             } else if (i % 5 == 0) {

@@ -12,15 +12,17 @@ using namespace std;
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
-public:
-    ListNode* deleteDuplicates(ListNode* head) {
+class Solution
+{
+ public:
+    ListNode* deleteDuplicates(ListNode* head)
+    {
         ListNode* remover = nullptr;
         ListNode* new_head = nullptr;
         ListNode* now = head;
         ListNode* next;
-        
-        while(now != nullptr) {
+
+        while (now != nullptr) {
             if (now->next != nullptr && now->next->val == now->val) {
                 next = now->next;
                 while (next != nullptr && next->val == now->val) {
@@ -30,7 +32,7 @@ public:
             } else {
                 if (remover == nullptr) {
                     new_head = now;
-                    remover = new_head; 
+                    remover = new_head;
                 } else {
                     remover->next = now;
                     remover = now;
@@ -41,7 +43,7 @@ public:
         if (remover) {
             remover->next = nullptr;
         }
-        
+
         return new_head;
     }
 };
