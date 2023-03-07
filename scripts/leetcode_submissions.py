@@ -3,7 +3,9 @@ this scripts needs httpx to be installed
 https://www.python-httpx.org/
 """
 import os
+import sys
 from os.path import exists, expanduser
+from subprocess import check_output
 
 from httpx import Client
 
@@ -12,11 +14,14 @@ competitive_folder = expanduser(os.environ.get("COMPETITIVE_FOLDER", "./leetcode
 cookies = {
     "LEETCODE_SESSION": os.environ.get("LEETCODE_SESSION", ""),
     "csrftoken": os.environ.get("LEETCODE_CSRFTOKEN", ""),
+    "NEW_PROBLEMLIST_PAGE": "1",
 }
+
+submitted = {}
+limit = int(os.environ.get("LEETCODE_LIMIT", 100))
 
 print(f"changing directory to {competitive_folder}")
 os.chdir(competitive_folder)
-
 
 client = Client(
     base_url="https://leetcode.com/api/submissions",
@@ -25,26 +30,16 @@ client = Client(
     },
 )
 
-offset = 0
-limit = int(os.environ.get("LEETCODE_LIMIT", 100))
-last_key = None
+params = {"limit": limit}
 
-submissions = {}
+response = client.get("/", params=params, cookies=cookies)
+cookies.update(response.cookies)
+cookies = response.cookies
+res = response.json()
 
-while True:
-    params = {"limit": limit, "offset": offset}
-    if last_key:
-        params["lastkey"] = last_key
 
-    response = client.get("/", params=params, cookies=cookies)
-    cookies = response.cookies
-    res = response.json()
-
-    if response.status_code != 200:
-        print(response)
-        break
-
-    for submission in reversed(res["submissions_dump"]):
+if response.status_code == 200:
+    for submission in res["submissions_dump"]:
         extension = ""
         if submission["lang"] == "cpp":
             extension = "cpp"
@@ -52,22 +47,31 @@ while True:
             extension = "py"
 
         filename = f'{submission["title_slug"]}.{extension}'
-        if submission["status"] == 10 and not exists(filename):
-            message = f'{submission["title_slug"]}\n\nhttps://leetcode.com/problems/{submission["title_slug"]}\n\n{submission["runtime"].replace(" ", "")} {submission["memory"].replace(" ", "").lower()}'
+        if (
+            filename not in submitted
+            and submission["status"] == 10
+            and (
+                not exists(filename)
+                or submission["timestamp"] > int(
+                    check_output(["git", "log", "-n 1", "--format='%at'", filename])
+                    .decode(sys.stdout.encoding)
+                    .strip()
+                    .replace("'", "")
+                )
+            )
+        ):
+            submitted[filename] = submission
 
-            print(f"writing {submission['title_slug']}")
-            file = open(filename, "w")
-            file.write(submission["code"])
-            file.close()
+for filename, submission in reversed(submitted.items()):
+    message = f'{submission["title_slug"]}\n\nhttps://leetcode.com/problems/{submission["title_slug"]}\n\n{submission["runtime"].replace(" ", "")} {submission["memory"].replace(" ", "").lower()}'
 
-            os.system("git reset")
-            if extension == "py":
-                os.system(f"black {filename}")
-            os.system(f"git add {filename}")
-            os.system(f'git commit -m "{message}"')
+    print(f"writing {submission['title_slug']}")
+    file = open(filename, "w")
+    file.write(submission["code"])
+    file.close()
 
-    last_key = res["last_key"]
-    if not res["has_next"]:
-        break
-
-    offset += limit
+    os.system("git reset")
+    if filename.split(".")[-1] == "py":
+        os.system(f"black {filename}")
+    os.system(f"git add {filename}")
+    os.system(f'git commit -m "{message}"')
