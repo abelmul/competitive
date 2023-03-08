@@ -16,7 +16,8 @@ class Solution:
 
             while (i - l + 1) - max_freq > k:
                 str_cnt[s[l]] -= 1
-                max_freq = max(str_cnt.values())
+                # i don't know why this works
+                # max_freq = max(str_cnt.values())
                 l += 1
 
             max_length = max(max_length, i - l + 1)
