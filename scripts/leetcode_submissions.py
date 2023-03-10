@@ -52,7 +52,8 @@ if response.status_code == 200:
             and submission["status"] == 10
             and (
                 not exists(filename)
-                or submission["timestamp"] > int(
+                or submission["timestamp"]
+                > int(
                     check_output(["git", "log", "-n 1", "--format='%at'", filename])
                     .decode(sys.stdout.encoding)
                     .strip()

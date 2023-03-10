@@ -1,5 +1,5 @@
-from typing import List
 from functools import cmp_to_key, partial
+from typing import List
 
 
 class Solution:
