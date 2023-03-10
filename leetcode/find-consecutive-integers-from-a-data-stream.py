@@ -1,17 +1,17 @@
 class DataStream:
     def __init__(self, value: int, k: int):
-        self.count = 0
+        self.queue = []
         self.value = value
         self.k = k
 
     def consec(self, num: int) -> bool:
-
         if num == self.value:
-            self.count += 1
+            self.queue.append(num)
         else:
-            self.count = 0
+            # we can use pop front
+            self.queue = []
 
-        return self.count >= self.k
+        return len(self.queue) >= self.k
 
 
 # Your DataStream object will be instantiated and called as such:
