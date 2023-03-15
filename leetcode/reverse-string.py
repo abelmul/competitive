@@ -2,18 +2,17 @@ from typing import List
 
 
 class Solution:
+    def helper(self, s: List[str], i, j) -> None:
+        if not s or i >= j or j - i == 1:
+            return
+
+        s[i], s[j - 1] = s[j - 1], s[i]
+
+        self.helper(s, i + 1, j - 1)
+
     def reverseString(self, s: List[str]) -> None:
         """
         Do not return anything, modify s in-place instead.
         """
 
-        # s.reverse()
-        negative_i = -1
-        length = len(s)
-        for i in range(length):
-            if i >= length + negative_i:
-                break
-
-            s[i], s[negative_i] = s[negative_i], s[i]
-
-            negative_i -= 1
+        self.helper(s, 0, len(s))
