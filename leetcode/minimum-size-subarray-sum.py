@@ -17,6 +17,7 @@ class Solution:
                     l += 1
 
                 min_length = min(min_length, i - l + 2)
+
         if min_length > 100000:
             min_length = 0
 
