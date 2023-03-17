@@ -2,36 +2,33 @@ from typing import List
 
 
 class Solution:
-    def binarySearch(self, nums: List[int], target: int) -> int:
-        l = 0
-        r = len(nums) - 1
-
-        while l <= r:
-            mid = (l + r) // 2
-
-            if nums[mid] == target:
-                return mid
-            elif nums[mid] > target:
-                r = mid - 1
-            else:
-                l = mid + 1
-
-        return -1
-
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         length = len(nums)
-        index = self.binarySearch(nums, target)
+        l = 0
+        r = length - 1
 
-        if index != -1:
-            l = index
-            r = index
+        # get first index
+        while l < r:
+            m = l + (r - l) // 2
 
-            while l >= 0 and nums[l] == target:
-                l -= 1
+            if target > nums[m]:
+                l = m + 1
+            else:
+                r = m
 
-            while r < length and nums[r] == target:
-                r += 1
+        if l >= length or nums[l] != target:
+            return [-1, -1]
 
-            return [l + 1, r - 1]
+        first = l
 
-        return [-1, -1]
+        # get last index
+        r = length
+        while l < r:
+            m = l + (r - l) // 2
+
+            if nums[m] > target:
+                r = m
+            else:
+                l = m + 1
+
+        return [first, l - 1]
