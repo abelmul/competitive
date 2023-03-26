@@ -1,2 +1,4 @@
 .env
 .cph/
+.idea/
+.vscode/
