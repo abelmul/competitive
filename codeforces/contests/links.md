@@ -15,3 +15,4 @@
 - Contest #13 -> https://codeforces.com/gym/433100/standings
 - Contest #14 -> https://codeforces.com/gym/433716/standings
 - Contest #15 -> https://codeforces.com/gym/434753/standings
+- Contest #16 -> https://codeforces.com/gym/437545/standings
