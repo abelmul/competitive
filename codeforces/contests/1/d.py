@@ -1,3 +1,11 @@
+"""
+A2SVians
+https://codeforces.com/gym/418150/problem/D
+
+Time - O(n)
+Space - O(n)
+"""
+
 n = int(input())
 
 names = set(input().split(" "))

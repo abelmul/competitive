@@ -1,3 +1,11 @@
+"""
+Traffic Light
+https://codeforces.com/gym/418150/problem/E
+
+Time - O(n)
+Space - O(n)
+"""
+
 t = int(input())
 
 for i in range(t):
