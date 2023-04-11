@@ -8,23 +8,22 @@ class Solution
     bool isValid(string s)
     {
         stack<char> st;
+        set<char> opening = {'(', '[', '{'};
+        unordered_map<char, char> ending = {
+            {')', '('},
+            {']', '['},
+            {'}', '{'},
+        };
 
-        for (char c : s) {
-            if (c == '(' || c == '[' || c == '{') {
+        for (auto c : s) {
+            if (opening.find(c) != opening.end()) {
                 st.push(c);
-            } else if (c == ')' || c == ']' || c == '}') {
-                if (st.empty())
+            } else {
+                if (st.empty() || st.top() != ending[c])
                     return false;
-                char top = st.top();
-
-                if ((c == ')' && top != '(') || (c == ']' && top != '[') ||
-                    (c == '}' && top != '{'))
-                    return false;
-
                 st.pop();
             }
         }
-
         return st.empty();
     }
 };
