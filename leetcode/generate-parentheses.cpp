@@ -9,8 +9,7 @@ class Solution
     {
         vector<string> res;
 
-        function<void(string, int, int)> backtrack = [&](string s, int left,
-                                                         int right) {
+        function<void(string, int, int)> backtrack = [&](string s, int left, int right) {
             if (left == 0 && right == 0) {
                 res.push_back(s);
             }
