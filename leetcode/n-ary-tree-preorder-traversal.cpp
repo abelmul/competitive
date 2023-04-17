@@ -39,8 +39,7 @@ class Solution
 
             res.push_back(node->val);
 
-            for (auto child = node->children.rbegin();
-                 child != node->children.rend(); ++child)
+            for (auto child = node->children.rbegin(); child != node->children.rend(); ++child)
                 nodes.push(*child);
         }
 
