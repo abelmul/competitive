@@ -16,20 +16,16 @@ class NumMatrix
                 if (i == 0 && j == 0)
                     continue;
 
-                data[i][j] +=
-                    get_at(i - 1, j) + get_at(i, j - 1) - get_at(i - 1, j - 1);
+                data[i][j] += get_at(i - 1, j) + get_at(i, j - 1) - get_at(i - 1, j - 1);
             }
         }
     }
 
-    int get_at(int row, int column)
-    {
-        return (row < 0 || column < 0) ? 0 : data[row][column];
-    }
+    int get_at(int row, int column) { return (row < 0 || column < 0) ? 0 : data[row][column]; }
 
     int sumRegion(int row1, int col1, int row2, int col2)
     {
-        return data[row2][col2] + get_at(row1 - 1, col1 - 1) -
-               get_at(row2, col1 - 1) - get_at(row1 - 1, col2);
+        return data[row2][col2] + get_at(row1 - 1, col1 - 1) - get_at(row2, col1 - 1) -
+               get_at(row1 - 1, col2);
     }
 };

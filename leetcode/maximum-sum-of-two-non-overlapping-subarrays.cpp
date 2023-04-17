@@ -13,8 +13,7 @@ class Solution
 
         for (int i = 0; i < size - firstLen - secondLen; i++) {
             int sum1 = prefix_sum[i + firstLen] - prefix_sum[i];
-            int second_max =
-                prefix_sum[i + firstLen + secondLen] - prefix_sum[i + firstLen];
+            int second_max = prefix_sum[i + firstLen + secondLen] - prefix_sum[i + firstLen];
             first_max = max(first_max, sum1);
             max_sum = max(max_sum, first_max + second_max);
         }

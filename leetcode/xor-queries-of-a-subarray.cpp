@@ -17,8 +17,7 @@ class Solution
         }
 
         for (int i = 0; i < queries_size; ++i) {
-            answer[i] =
-                prefix_sum[queries[i][0]] ^ prefix_sum[queries[i][1] + 1];
+            answer[i] = prefix_sum[queries[i][0]] ^ prefix_sum[queries[i][1] + 1];
         }
 
         return answer;
