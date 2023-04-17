@@ -14,8 +14,7 @@ class Solution
 
         sort(nums.begin(), nums.end());
 
-        function<void(int, vector<int>&)> backtrack = [&](int l,
-                                                          vector<int> cur) {
+        function<void(int, vector<int>&)> backtrack = [&](int l, vector<int> cur) {
             res.insert(cur);
 
             if (l >= length)
