@@ -12,8 +12,7 @@ class Solution
 
         sort(cookies.begin(), cookies.end());
 
-        function<int(int, vector<int>&)> backtrack = [&](int l,
-                                                         vector<int>& cur) {
+        function<int(int, vector<int>&)> backtrack = [&](int l, vector<int>& cur) {
             if (l >= length) {
                 return *max_element(cur.begin(), cur.end());
             }
