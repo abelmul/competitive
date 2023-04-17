@@ -12,8 +12,7 @@ class Solution
 
         auto length = nums.size();
 
-        function<void(int, vector<int>&)> backtrack = [&](int l,
-                                                          vector<int> cur) {
+        function<void(int, vector<int>&)> backtrack = [&](int l, vector<int> cur) {
             res.push_back(cur);
 
             if (l >= length)
