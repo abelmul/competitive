@@ -11,8 +11,7 @@
 
 using namespace std;
 
-int countAvailableResturants(vector<vector<int>>& adjlist, vector<int>& cats,
-                             int m)
+int countAvailableResturants(vector<vector<int>>& adjlist, vector<int>& cats, int m)
 {
     int count = 0;
     bool isleaf;

@@ -28,8 +28,7 @@ void printAnswer(vector<vector<int>> paths)
 void findLeafs(vector<int>& paths, int n, vector<int>& leafs)
 {
     leafs.clear();
-    unordered_set<int> paths_set =
-        unordered_set<int>(paths.begin(), paths.end());
+    unordered_set<int> paths_set = unordered_set<int>(paths.begin(), paths.end());
 
     for (auto i = 0; i < n; ++i) {
         if (paths_set.find(i + 1) == paths_set.end()) {

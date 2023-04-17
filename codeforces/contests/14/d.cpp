@@ -8,7 +8,7 @@ using namespace std;
  *
  * Time - O(n)
  * Space - O(n) - for stack
-*/
+ */
 
 void solve(int n)
 {
