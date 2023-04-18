@@ -7,9 +7,9 @@ time = O(n)
 space = O(1)
 """
 
-n,k = map(int, input().split())
+n, k = map(int, input().split())
 
-res = float('-inf')
+res = float("-inf")
 
 for i in range(n):
     f, t = map(int, input().split())

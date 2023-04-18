@@ -1,6 +1,7 @@
 """
 Traffic Light
-https://codeforces.com/gym/419273/problem/E
+
+https://codeforces.com/gym/426951/problem/E
 
 Time - O(n)
 Space - O(n)

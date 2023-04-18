@@ -1,6 +1,6 @@
 """
 Test 123
-https://codeforces.com/gym/418150/problem/A
+https://codeforces.com/gym/419273/problem/A
 
 Time - O(1)
 Space - O(1)

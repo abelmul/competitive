@@ -1,6 +1,6 @@
 """
 Haile !!!
-https://codeforces.com/gym/418150/problem/C
+https://codeforces.com/gym/419273/problem/C
 
 Time - O(1)
 Space - O(1)

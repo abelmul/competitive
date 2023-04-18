@@ -17,7 +17,7 @@ r = len(s)
 while l < r:
     m = (l + r) // 2
 
-    if s_sorted[m] >= 'a': 
+    if s_sorted[m] >= "a":
         # is capital
         r = m
     else:

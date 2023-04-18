@@ -1,6 +1,6 @@
 """
 Grandpa
-https://codeforces.com/gym/418150/problem/B
+https://codeforces.com/gym/419273/problem/B
 
 Time - O(1)
 Space - O(1)

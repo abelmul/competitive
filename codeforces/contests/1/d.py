@@ -1,6 +1,6 @@
 """
 A2SVians
-https://codeforces.com/gym/418150/problem/D
+https://codeforces.com/gym/419273/problem/D
 
 Time - O(n)
 Space - O(n)

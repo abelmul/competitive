@@ -7,12 +7,13 @@ time = O(mlog(n))
 space = O(m)
 """
 
-n,m = map(int, input().split())
+n, m = map(int, input().split())
 a = list(map(int, input().split()))
 b = list(map(int, input().split()))
 
 # sort array
 a.sort()
+
 
 def binarySearch(a, q):
     l = 0
@@ -27,6 +28,7 @@ def binarySearch(a, q):
             l = m + 1
 
     return l
+
 
 res = [0] * m
 for i in range(m):
