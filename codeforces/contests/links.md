@@ -18,3 +18,5 @@
 - [Contest #15](https://codeforces.com/gym/436386/standings)
 - [Contest #16](https://codeforces.com/gym/437545/standings)
 - [Contest #17](https://codeforces.com/gym/438582/standings)
+- [Contest #18](https://codeforces.com/gym/440900/standings)
+- [Contest #19](https://codeforces.com/gym/442062/standings)

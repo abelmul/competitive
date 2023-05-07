@@ -26,3 +26,17 @@
 ## Contest 14
 
 - [E - Quests](https://codeforces.com/gym/434753/problem/E)
+
+## Contest 18
+
+- [A - Queue at the School](https://codeforces.com/gym/440900/problem/A)
+- [B - Taxi](https://codeforces.com/gym/440900/problem/B)
+- [C - Sereja and Suffixes](https://codeforces.com/gym/440900/problem/C)
+- [D - Sort the Array](https://codeforces.com/gym/440900/problem/D)
+- [E - Counting Kangaroos is Fun](https://codeforces.com/gym/440900/problem/E)
+
+## Contest 19
+
+- [D - Maximal And](https://codeforces.com/gym/442062/problem/D)
+- [E - And It's Non-Zero](https://codeforces.com/gym/442062/problem/E)
+- [F - Coprime](https://codeforces.com/gym/442062/problem/F)
