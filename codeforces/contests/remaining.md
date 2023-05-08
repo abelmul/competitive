@@ -5,11 +5,6 @@
 - [D - Nice Words](https://codeforces.com/gym/428258/problem/D)
 - [E - Choose Min Subsegment](https://codeforces.com/gym/428258/problem/E)
 
-## Contest #10
-
-- [C - Make Product Equal One](https://codeforces.com/gym/430578/problem/C)
-- [E - Seat Arrangements](https://codeforces.com/gym/430578/problem/E)
-
 ## Contest #12
 
 - [D - Minimal String](https://codeforces.com/gym/432138/problem/D)
