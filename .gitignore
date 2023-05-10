@@ -2,6 +2,4 @@
 .cph/
 .idea/
 .vscode/
-.stack-work
-stack.yaml
-stack.yaml.lock
+exercism
