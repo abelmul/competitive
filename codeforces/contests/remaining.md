@@ -24,7 +24,3 @@
 - [C - Sereja and Suffixes](https://codeforces.com/gym/440900/problem/C)
 - [D - Sort the Array](https://codeforces.com/gym/440900/problem/D)
 - [E - Counting Kangaroos is Fun](https://codeforces.com/gym/440900/problem/E)
-
-## Contest 19
-
-- [E - And It's Non-Zero](https://codeforces.com/gym/442062/problem/E)
