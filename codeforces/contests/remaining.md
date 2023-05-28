@@ -24,3 +24,7 @@
 - [C - Sereja and Suffixes](https://codeforces.com/gym/440900/problem/C)
 - [D - Sort the Array](https://codeforces.com/gym/440900/problem/D)
 - [E - Counting Kangaroos is Fun](https://codeforces.com/gym/440900/problem/E)
+
+## Contest 21
+
+- [F - PFAST Inc.](https://codeforces.com/gym/444629/problem/F)
