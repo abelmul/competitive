@@ -22,3 +22,4 @@
 - [Contest #19](https://codeforces.com/gym/442062/standings)
 - [Contest #20](https://codeforces.com/gym/443056/standings)
 - [Contest #21](https://codeforces.com/gym/444629/standings)
+- [Contest #22](https://codeforces.com/gym/445680/standings)

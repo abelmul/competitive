@@ -28,3 +28,8 @@
 ## Contest 21
 
 - [F - PFAST Inc.](https://codeforces.com/gym/444629/problem/F)
+
+## Contest 22
+
+- [D - Maze](https://codeforces.com/gym/445680/problem/D)
+- [E - Jumping On Walls](https://codeforces.com/gym/445680/problem/E)
