@@ -4,7 +4,7 @@ using namespace std;
 
 /**
  * The Lakes
- * https://codeforces.com/gym/445680/C
+ * https://codeforces.com/gym/445680/problem/C
  *
  * Time - O(n + m)
  * Space - O(n + m)

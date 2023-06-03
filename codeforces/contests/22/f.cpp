@@ -4,7 +4,7 @@ using namespace std;
 
 /**
  * The Two Routes
- * https://codeforces.com/gym/445680/F
+ * https://codeforces.com/gym/445680/problem/F
  *
  * Time - O(n + m)
  * Space - O(n)

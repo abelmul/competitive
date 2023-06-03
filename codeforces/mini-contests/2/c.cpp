@@ -3,8 +3,8 @@
 using namespace std;
 
 /**
- * Two Buttons
- * https://codeforces.com/gym/445382/problem/B
+ * Swap Adjacent Elements
+ * https://codeforces.com/gym/445382/problem/C
  *
  * Time - O(nlog(n))
  * Space - O(1)

@@ -4,7 +4,7 @@ using namespace std;
 
 /**
  * Brain Network (easy)
- * https://codeforces.com/gym/445680/B
+ * https://codeforces.com/gym/445680/problem/B
  *
  * Time - O(n + m)
  * Space - O(n)

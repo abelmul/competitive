@@ -4,7 +4,7 @@ using namespace std;
 
 /**
  * The Way to Home
- * https://codeforces.com/gym/445680/A
+ * https://codeforces.com/gym/445680/problem/A
  *
  * Time - O(n)
  * Space - O(1)
