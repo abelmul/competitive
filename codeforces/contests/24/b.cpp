@@ -3,12 +3,12 @@
 using namespace std;
 
 /**
- * Maze
- * https://codeforces.com/gym/445680/problem/D
- *
- * Time - O(n)
- * Space - O(n)
- */
+* Maze
+  * https://codeforces.com/gym/446741/problem/B
+  *
+  * Time - O(n)
+  * Space - O(n)
+  */
 
 int main()
 {

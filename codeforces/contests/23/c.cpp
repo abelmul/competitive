@@ -3,60 +3,78 @@
 using namespace std;
 
 /**
- * Swap Adjacent Elements
- * https://codeforces.com/gym/446741/problem/C
+ * The Lakes
+ * https://codeforces.com/gym/445680/problem/C
  *
- * Time - O(nlog(n))
- * Space - O(1)
+ * Time - O(n + m)
+ * Space - O(n + m)
  */
+
+const pair<int, int> dirs[] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+
+int dfs(const vector<vector<int>>& adjMatrix, set<pair<int, int>>& visited, int i, int j)
+{
+    if (visited.find({i, j}) != visited.end())
+        return 0;
+
+    int res = adjMatrix[i][j];
+
+    int r, c;
+
+    visited.insert({i, j});
+
+    for (auto d : dirs) {
+        r = i + d.first;
+        c = j + d.second;
+
+        if (r >= 0 && c >= 0 && r < adjMatrix.size() && c < adjMatrix[0].size() &&
+            adjMatrix[r][c] > 0) {
+            res += dfs(adjMatrix, visited, r, c);
+        }
+    }
+
+    return res;
+}
 
 int main()
 {
-    int n;
-    vector<int> a;
-    string rule;
+    int t, n, m;
 
-    unordered_map<int, unordered_set<int>> connected;
+    vector<vector<int>> adjMatrix;
+    set<pair<int, int>> visited;
+
+    int res = 0;
 
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    cin >> n;
-    a.resize(n);
+    cin >> t;
 
-    for (auto i = 0; i < n; ++i) cin >> a[i];
+    while (t--) {
+        cin >> n >> m;
 
-    cin >> rule;
+        adjMatrix.resize(n);
 
-    int j, i = 0;
-
-    while (i < n - 1) {
-        if (rule[i] == '1') {
-            j = i;
-            while (rule[j] == '1') {
-                ++j;
+        for (auto i = 0; i < n; ++i) {
+            adjMatrix[i].resize(m);
+            for (auto j = 0; j < m; ++j) {
+                cin >> adjMatrix[i][j];
             }
-
-            sort(a.begin() + i, a.begin() + j + 1);
-            i = j + 1;
-        } else {
-            ++i;
         }
-    }
 
-    bool isSorted = true;
-    for (auto i = 1; i < n; ++i) {
-        if (a[i - 1] > a[i]) {
-            isSorted = false;
+        for (auto i = 0; i < n; ++i) {
+            for (auto j = 0; j < m; ++j) {
+                if (adjMatrix[i][j] > 0 && visited.find({i, j}) == visited.end()) {
+                    res = max(res, dfs(adjMatrix, visited, i, j));
+                }
+            }
         }
-    }
 
-    if (isSorted) {
-        cout << "YES";
-    } else {
-        cout << "NO";
+        cout << res << "\n";
+
+        visited.clear();
+        res = 0;
     }
-    cout << "\n";
 
     return 0;
 }

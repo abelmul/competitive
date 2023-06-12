@@ -3,46 +3,47 @@
 using namespace std;
 
 /**
- * Fox And Snake
- *
- * https://codeforces.com/gym/446741/problem/A
+ * The Way to Home
+ * https://codeforces.com/gym/445680/problem/A
  *
  * Time - O(n)
- * Space - O(m)
+ * Space - O(1)
  */
 
 int main()
 {
-    int n, m;
-    string res;
+    int n, d;
+    string s;
 
-    bool fill_all = true, fill_at_start = false;
-    char f;
+    int res = 0, i = 0;
 
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    cin >> n >> m;
+    cin >> n >> d;
+    cin >> s;
 
-    res.resize(m);
-    for (auto i = 0; i < n; ++i) {
-        f = fill_all ? '#' : '.';
-        fill(res.begin(), res.end(), f);
-
-        if (!fill_all) {
-            if (fill_at_start) {
-                res[0] = '#';
-            } else {
-                res[m - 1] = '#';
-            }
-
-            fill_at_start = !fill_at_start;
+    while (i < n) {
+        int j = min(i + d, n - 1);
+        while (s[j] != '1' && j > i) {
+            --j;
         }
 
-        fill_all = !fill_all;
-
-        cout << res << "\n";
+        if (s[j] == '1' && j > i) {
+            ++res;
+            i = j;
+        } else {
+            break;
+        }
     }
+
+    if (i == n - 1) {
+        cout << res;
+    } else {
+        cout << -1;
+    }
+
+    cout << "\n";
 
     return 0;
 }

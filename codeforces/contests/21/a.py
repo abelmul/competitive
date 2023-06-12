@@ -1,26 +1,39 @@
 """
-New Year Transportation 
+Sereja and Dima
 
-https://codeforces.com/gym/444629/problem/A
+https://codeforces.com/gym/443056/problem/A
 
 Time - O(n)
 Space - O(1)
 """
 
-n, t = map(int, input().split())
-
+n = int(input())
 a = list(map(int, input().split()))
 
-res = "NO"
+l = 0
+r = n - 1
 
-i = 0
-while i < n - 1:
-    if t == i + 1:
-        res = "YES"
-        break
-    i += a[i]
+sereja_sum = 0
+dima_sum = 0
 
-if t == i + 1:
-    res = "YES"
+sereja_move = True
 
-print(res)
+while l <= r:
+    if sereja_move:
+        if a[l] > a[r]:
+            sereja_sum += a[l]
+            l += 1
+        else:
+            sereja_sum += a[r]
+            r -= 1
+    else:
+        if a[l] > a[r]:
+            dima_sum += a[l]
+            l += 1
+        else:
+            dima_sum += a[r]
+            r -= 1
+
+    sereja_move = not sereja_move
+
+print(sereja_sum, dima_sum)

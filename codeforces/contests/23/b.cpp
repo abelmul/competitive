@@ -3,86 +3,62 @@
 using namespace std;
 
 /**
-* Maze
-  * https://codeforces.com/gym/446741/problem/B
-  *
-  * Time - O(n)
-  * Space - O(n)
-  */
+ * Brain Network (easy)
+ * https://codeforces.com/gym/445680/problem/B
+ *
+ * Time - O(n + m)
+ * Space - O(n)
+ */
+
+bool isCyclic(unordered_map<int, vector<int>> adjList, vector<bool>& visited, int i, int parent)
+{
+    visited[i - 1] = true;
+
+    for (auto j : adjList[i]) {
+        if (!visited[j - 1]) {
+            if (isCyclic(adjList, visited, j, i)) {
+                return true;
+            }
+        } else if (j != parent) {
+            return true;
+        }
+    }
+    return false;
+}
 
 int main()
 {
-    int n, m, k;
+    int n, m;
+    int a, b;
+    unordered_map<int, vector<int>> adjList;
 
-    vector<vector<char>> grid;
+    vector<bool> visited;
 
-    const pair<int, int> dirs[] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
-    deque<pair<int, int>> queue;
-    set<pair<int, int>> visited;
-
-    int x = 0;
-    int ci, cj;
+    string res = "yes";
 
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    cin >> n >> m >> k;
-    grid.resize(n);
+    cin >> n >> m;
 
-    for (auto i = 0; i < n; ++i) {
-        grid[i].resize(m);
-        for (auto j = 0; j < m; ++j) {
-            cin >> grid[i][j];
+    visited.resize(n);
 
-            x += (grid[i][j] == '.');
-        }
+    for (auto i = 0; i < m; ++i) {
+        cin >> a >> b;
+        adjList[a].push_back(b);
+        adjList[b].push_back(a);
     }
 
-    // we need x - k empty cells
-    x -= k;
-
-    for (auto i = 0; i < n; ++i) {
-        for (auto j = 0; j < m; ++j) {
-            if (grid[i][j] == '.') {
-                // bfs until we fullfil x
-                queue.push_back({i, j});
-
-                while (!queue.empty() && visited.size() < x) {
-                    tie(ci, cj) = queue.front();
-                    queue.pop_front();
-
-                    if (visited.find({ci, cj}) != visited.end())
-                        continue;
-                    visited.insert({ci, cj});
-
-                    for (auto d : dirs) {
-                        int r = ci + d.first, c = cj + d.second;
-
-                        if (r >= 0 && c >= 0 && r < n && c < m && grid[r][c] == '.') {
-                            queue.push_back({r, c});
-                        }
-                    }
-                }
-                break;
-            }
+    if (!isCyclic(adjList, visited, 1, -1)) {
+        for (auto i = 0; i < n; ++i) {
+            if (!visited[i])
+                res = "no";
         }
-        if (visited.size() >= x)
-            break;
+    } else {
+        res = "no";
     }
 
-    for (auto i = 0; i < n; ++i) {
-        for (auto j = 0; j < m; ++j) {
-            if (grid[i][j] == '.' && visited.find({i, j}) == visited.end())
-                grid[i][j] = 'X';
-        }
-    }
-
-    for (auto i = 0; i < n; ++i) {
-        for (auto j = 0; j < m; ++j) {
-            cout << grid[i][j];
-        }
-        cout << "\n";
-    }
+    cout << res << "\n";
 
     return 0;
 }

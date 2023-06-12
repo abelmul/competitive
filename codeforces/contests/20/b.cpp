@@ -3,37 +3,45 @@
 using namespace std;
 
 /**
- * Ultra-fast Mathematician
- * https://codeforces.com/gym/443056/problem/B
- *
- * Time - O(n)
+ * Odd Divisor
+ * https://codeforces.com/gym/442062/problem/B
+ * 
+ * Time - O(log(n))
  * Space - O(n)
- */
+*/
 
 int main()
 {
-    string n, m;
+    long long t, n;
     string res;
-
-    size_t size;
 
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    cin >> n >> m;
+    cin >> t;
 
-    size = n.size();
-    res.resize(size);
+    for (auto _ = 0; _ < t; ++_) {
+        cin >> n;
 
-    for (auto i = 0; i < size; ++i) {
-        res[i] = '0';
+        res = "YES";
 
-        if (n[i] != m[i]) {
-            res[i] = '1';
+        if (n % 2 == 0) {
+            res = "NO";
+
+            while (n) {
+                if (n % 2) {
+                    if (n != 1) {
+                        res = "YES";
+                    }
+                    break;
+                }
+
+                n /= 2;
+            }
         }
-    }
 
-    cout << res << "\n";
+        cout << res << "\n";
+    }
 
     return 0;
 }

@@ -3,86 +3,74 @@
 using namespace std;
 
 /**
- * Maze
- * https://codeforces.com/gym/445680/problem/D
+ * Cyclic Components
+ * https://codeforces.com/gym/444629/problem/D
  *
- * Time - O(n)
+ * Time - O(V+E)
  * Space - O(n)
  */
 
+bool isCyclic(map<int, int>& indegree)
+{
+    for (auto& [k, v] : indegree) {
+        if (v != 2) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void dfs(unordered_map<int, vector<int>>& adjList, int i, vector<bool>& visited,
+         map<int, int>& indegree)
+{
+    ++indegree[i - 1];
+    if (visited[i - 1] == false) {
+        visited[i - 1] = true;
+
+        for (auto u : adjList[i]) {
+            dfs(adjList, u, visited, indegree);
+        }
+    }
+}
+
 int main()
 {
-    int n, m, k;
+    int n, m;
+    int v, u;
 
-    vector<vector<char>> grid;
+    unordered_map<int, vector<int>> adjList;
+    vector<bool> visited;
+    map<int, int> indegree;
 
-    const pair<int, int> dirs[] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
-    deque<pair<int, int>> queue;
-    set<pair<int, int>> visited;
-
-    int x = 0;
-    int ci, cj;
+    int res = 0;
 
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    cin >> n >> m >> k;
-    grid.resize(n);
+    cin >> n >> m;
 
-    for (auto i = 0; i < n; ++i) {
-        grid[i].resize(m);
-        for (auto j = 0; j < m; ++j) {
-            cin >> grid[i][j];
+    visited.resize(n);
 
-            x += (grid[i][j] == '.');
-        }
-    }
+    for (auto i = 0; i < m; ++i) {
+        cin >> v >> u;
 
-    // we need x - k empty cells
-    x -= k;
-
-    for (auto i = 0; i < n; ++i) {
-        for (auto j = 0; j < m; ++j) {
-            if (grid[i][j] == '.') {
-                // bfs until we fullfil x
-                queue.push_back({i, j});
-
-                while (!queue.empty() && visited.size() < x) {
-                    tie(ci, cj) = queue.front();
-                    queue.pop_front();
-
-                    if (visited.find({ci, cj}) != visited.end())
-                        continue;
-                    visited.insert({ci, cj});
-
-                    for (auto d : dirs) {
-                        int r = ci + d.first, c = cj + d.second;
-
-                        if (r >= 0 && c >= 0 && r < n && c < m && grid[r][c] == '.') {
-                            queue.push_back({r, c});
-                        }
-                    }
-                }
-                break;
-            }
-        }
-        if (visited.size() >= x)
-            break;
+        adjList[v].push_back(u);
+        adjList[u].push_back(v);
     }
 
     for (auto i = 0; i < n; ++i) {
-        for (auto j = 0; j < m; ++j) {
-            if (grid[i][j] == '.' && visited.find({i, j}) == visited.end())
-                grid[i][j] = 'X';
+        if (visited[i] == false) {
+            indegree[i] = -1;
+
+            dfs(adjList, i + 1, visited, indegree);
+            res += isCyclic(indegree);
+
+            indegree.clear();
         }
     }
 
-    for (auto i = 0; i < n; ++i) {
-        for (auto j = 0; j < m; ++j) {
-            cout << grid[i][j];
-        }
-        cout << "\n";
-    }
+    cout << res << "\n";
 
     return 0;
 }

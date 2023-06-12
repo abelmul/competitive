@@ -3,72 +3,52 @@
 using namespace std;
 
 /**
- * Graph Without Long Directed Paths
- * https://codeforces.com/gym/444629/problem/E
+ * And It's Non-Zero
  *
- * Time - O(n+m)
+ * https://codeforces.com/gym/443056/problem/E
+ *
+ * Time - O(n)
  * Space - O(n)
  */
 
-bool isBipartite(unordered_map<int, vector<int>>& adjList, vector<int>& visited, vector<int>& color,
-                 int i)
+vector<vector<int>> calculatePresum()
 {
-    if (visited[i - 1])
-        return true;
+    vector<vector<int>> presum(200001, vector<int>(20));
 
-    for (auto j : adjList[i]) {
-        if (color[j - 1] == -1) {
-            color[j - 1] = !color[i - 1];
-            if (!isBipartite(adjList, visited, color, j)) {
-                return false;
+    for (int i = 1; i < 200001; ++i) {
+        for (int j = 0; j < 20; ++j) {
+            presum[i][j] = presum[i - 1][j];
+            if (i & (1 << j)) {
+                presum[i][j]++;
             }
-        } else if (color[j - 1] != !color[i - 1]) {
-            return false;
         }
     }
 
-    return true;
+    return presum;
 }
 
 int main()
 {
-    int n, m;
-    int u, v;
+    int t, l, r;
 
-    vector<pair<int, int>> edgeList;
-    unordered_map<int, vector<int>> adjList;
-    vector<int> colors, visited;
+    int res;
+    vector<vector<int>> presum;
 
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    cin >> n >> m;
+    cin >> t;
 
-    colors.resize(n);
-    visited.resize(n);
-    edgeList.resize(m);
+    presum = calculatePresum();
 
-    fill(colors.begin(), colors.end(), -1);
-
-    for (auto i = 0; i < m; ++i) {
-        cin >> u >> v;
-
-        edgeList[i].first = u;
-        edgeList[i].second = v;
-        adjList[u].push_back(v);
-        adjList[v].push_back(u);
-    }
-
-    colors[0] = 0;
-    if (isBipartite(adjList, visited, colors, 1)) {
-        cout << "YES\n";
-        for (auto i = 0; i < m; ++i) {
-            char print = colors[edgeList[i].first - 1] == 1 ? '0' : '1';
-            cout << print;
+    while (t--) {
+        cin >> l >> r;
+        res = 0;
+        for (auto j = 0; j < 20; ++j) {
+            res = max(res, presum[r][j] - presum[l - 1][j]);
         }
-        cout << "\n";
-    } else {
-        cout << "NO\n";
+
+        cout << r - l + 1 - res << "\n";
     }
 
     return 0;

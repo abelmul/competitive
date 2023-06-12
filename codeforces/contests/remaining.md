@@ -19,12 +19,20 @@
 
 ## Contest 18
 
+- [A - New Year Transportation](https://codeforces.com/gym/439859/problem/A)
+- [B - Candy Box](https://codeforces.com/gym/439859/problem/B)
+- [C - Permutation Transformation](https://codeforces.com/gym/439859/problem/C)
+- [D - Little Girl and Maximum Sum](https://codeforces.com/gym/439859/problem/D)
+- [E - Letters Shop](https://codeforces.com/gym/439859/problem/E)
+
+## Contest 19
+
 - [A - Queue at the School](https://codeforces.com/gym/440900/problem/A)
 - [B - Taxi](https://codeforces.com/gym/440900/problem/B)
 - [C - Sereja and Suffixes](https://codeforces.com/gym/440900/problem/C)
 - [D - Sort the Array](https://codeforces.com/gym/440900/problem/D)
 - [E - Counting Kangaroos is Fun](https://codeforces.com/gym/440900/problem/E)
 
-## Contest 21
+## Contest 22
 
 - [F - PFAST Inc.](https://codeforces.com/gym/444629/problem/F)
