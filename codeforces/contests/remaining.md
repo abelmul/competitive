@@ -36,3 +36,32 @@
 ## Contest 22
 
 - [F - PFAST Inc.](https://codeforces.com/gym/444629/problem/F)
+
+## Contest 25_1
+
+- [A - Quality vs Quantity](https://codeforces.com/gym/448566/problem/A)
+- [B - Make Array Good](https://codeforces.com/gym/448566/problem/B)
+- [C - Array Splitting](https://codeforces.com/gym/448566/problem/C)
+- [D - Constructing the Array](https://codeforces.com/gym/448566/problem/D)
+- [E - Karen and Coffee](https://codeforces.com/gym/448566/problem/E)
+- [F - Fedor and New Game](https://codeforces.com/gym/448566/problem/F)
+- [G - Solve The Maze](https://codeforces.com/gym/448566/problem/G)
+- [H - Wooden Toy Festival](https://codeforces.com/gym/448566/problem/H)
+
+## Contest 26
+
+- [E - Phase Shift](https://codeforces.com/gym/449131/problem/E)
+- [F - Passable Paths (easy version)](https://codeforces.com/gym/449131/problem/F)
+
+## Contest 27
+
+- [D - Air Conditioners](https://codeforces.com/gym/450159/problem/D)
+- [F - Minimal Labels](https://codeforces.com/gym/450159/problem/E)
+
+## Contest 28
+
+- [E - Substring](https://codeforces.com/gym/451334/problem/E)
+
+## Contest 29
+
+- [F - Phase Shift](https://codeforces.com/gym/452649/problem/F)
