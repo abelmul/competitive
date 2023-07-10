@@ -5,37 +5,41 @@ using namespace std;
 class Solution
 {
  public:
-    bool validPath(int n, vector<vector<int>>& edges, int source, int destination)
+    void join(vector<int>& root, vector<int>& rank, int i, int j)
     {
-        deque<int> queue;
-        unordered_set<int> visited;
+        auto rootI = find(root, i);
+        auto rootJ = find(root, j);
 
-        unordered_map<int, vector<int>> graph;
-
-        for (auto e : edges) {
-            graph[e[0]].push_back(e[1]);
-            graph[e[1]].push_back(e[0]);
-        }
-
-        queue.push_back(source);
-
-        while (!queue.empty()) {
-            int node = queue.front();
-            queue.pop_front();
-
-            if (visited.find(node) != visited.end())
-                continue;
-
-            visited.insert(node);
-
-            if (node == destination)
-                return true;
-
-            for (auto e : graph[node]) {
-                queue.push_back(e);
+        if (rootI != rootJ) {
+            if (rank[rootI] > rank[rootJ]) {
+                root[rootJ] = root[rootI];
+                rank[rootI] += rank[rootJ];
+            } else {
+                root[rootI] = root[rootJ];
+                rank[rootJ] += rank[rootI];
             }
         }
+    }
 
-        return false;
+    int find(vector<int>& root, int i)
+    {
+        if (i != root[i]) {
+            root[i] = find(root, root[i]);
+        }
+
+        return root[i];
+    }
+
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination)
+    {
+        vector<int> root(n), rank(n, 1);
+
+        iota(root.begin(), root.end(), 0);
+
+        for (auto e : edges) {
+            join(root, rank, e[0], e[1]);
+        }
+
+        return find(root, source) == find(root, destination);
     }
 };
