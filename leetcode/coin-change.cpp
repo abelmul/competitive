@@ -7,28 +7,18 @@ class Solution
  public:
     int coinChange(vector<int>& coins, int amount)
     {
-        vector<int> memo(amount + 1);
+        vector<unsigned> memo(amount + 1, INT_MAX);
 
-        function<int(int)> dp = [&](int amount) {
-            if (amount == 0)
-                return 0;
+        memo[0] = 0;
 
-            int res = INT_MAX;
-
-            if (memo[amount] == 0) {
-                for (auto c : coins) {
-                    if (amount >= c) {
-                        if (dp(amount - c) >= 0) {
-                            res = min(res, 1 + dp(amount - c));
-                        }
-                    }
+        for (auto i = 1; i <= amount; ++i) {
+            for (auto c : coins) {
+                if (i >= c) {
+                    memo[i] = min(memo[i], 1 + memo[i - c]);
                 }
-                memo[amount] = res == INT_MAX ? -1 : res;
             }
+        }
 
-            return memo[amount];
-        };
-
-        return dp(amount);
-    }
+        return memo[amount] >= INT_MAX ? -1 : memo[amount];
+    };
 };
