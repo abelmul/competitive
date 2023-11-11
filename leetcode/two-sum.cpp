@@ -7,13 +7,18 @@ class Solution
  public:
     vector<int> twoSum(vector<int>& nums, int target)
     {
-        unordered_map<int, int> mp;
+        unordered_map<int, int> idxs;
+        vector<int> res(2);
+
         for (auto i = 0; i < nums.size(); ++i) {
-            if (mp.find(target - nums[i]) != mp.end()) {
-                return {mp[target - nums[i]], i};
+            if (idxs.find(target - nums[i]) != idxs.end()) {
+                res[0] = idxs[target - nums[i]];
+                res[1] = i;
+                break;
             }
-            mp[nums[i]] = i;
+            idxs[nums[i]] = i;
         }
-        return {};
+
+        return res;
     }
 };
