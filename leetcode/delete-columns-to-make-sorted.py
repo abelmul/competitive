@@ -6,10 +6,7 @@ class Solution:
         n = len(strs)
         length = len(strs[0])
 
-        str_matrix: List[List[str | int]] = [[0] * n for _ in range(length)]
-        for i in range(length):
-            for j in range(n):
-                str_matrix[i][j] = strs[j][i]
+        str_matrix = [[strs[j][i] for j in range(n)] for i in range(length)]
 
         count = 0
         for i in range(length):
