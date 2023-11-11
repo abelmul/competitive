@@ -7,21 +7,24 @@ class Solution
  public:
     int subarraySum(vector<int>& nums, int k)
     {
-        int size = nums.size();
-        unordered_map<int, int> prev_sum;
-        int current_sum = 0;
-        int count = 0;
+        auto size = nums.size();
 
-        for (int i = 0; i < size; ++i) {
-            current_sum += nums[i];
+        int res = 0;
+        long long total = 0;
+        unordered_map<long long, int> presum_map;
 
-            if (current_sum == k)
-                ++count;
-            if (prev_sum.find(current_sum - k) != prev_sum.end())
-                count += prev_sum[current_sum - k];
+        presum_map[0] = 1;
 
-            prev_sum[current_sum]++;
+        for (auto i = 0; i < size; ++i) {
+            total += nums[i];
+
+            if (presum_map.find(total - k) != presum_map.end()) {
+                res += presum_map[total - k];
+            }
+
+            ++presum_map[total];
         }
-        return count;
+
+        return res;
     }
 };
