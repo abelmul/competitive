@@ -5,8 +5,8 @@ class Solution:
             for i in s:
                 if i == t[0]:
                     t = t[1:]
+                    count -= 1
                     if t == "":
                         break
-            count = len(t)
 
         return count
