@@ -7,33 +7,38 @@ class Solution
  public:
     vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k)
     {
+        auto n = nums1.size(), m = nums2.size();
+
+        std::priority_queue<pair<int, pair<int, int>>> queue;
+        pair<int, pair<int, int>> tmp;
+
         vector<vector<int>> res;
 
-        auto n = nums1.size(), m = nums2.size();
-        std::function<bool(const pair<int, int>&, const pair<int, int>&)> compare =
-            [&nums1, &nums2](const pair<int, int>& a, const pair<int, int>& b) {
-                return nums1[a.first] + nums2[a.second] > nums1[b.first] + nums2[b.second];
-            };
+        for (auto i = 0; i < n; ++i) {
+            for (auto j = 0; j < m; ++j) {
+                if (queue.size() < k) {
+                    queue.push({nums1[i] + nums2[j], {nums1[i], nums2[j]}});
+                } else {
+                    tmp = queue.top();
 
-        std::priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(compare)> queue(
-            compare);
-        pair<int, int> tmp;
+                    if (nums1[i] + nums2[j] >= tmp.first) {
+                        break;
+                    }
 
-        queue.push({0, 0});
+                    queue.push({nums1[i] + nums2[j], {nums1[i], nums2[j]}});
 
-        while (k-- && queue.size()) {
+                    while (queue.size() > k) {
+                        queue.pop();
+                    }
+                }
+            }
+        }
+
+        while (!queue.empty()) {
             tmp = queue.top();
             queue.pop();
 
-            res.push_back({nums1[tmp.first], nums2[tmp.second]});
-
-            if (tmp.first + 1 < n) {
-                queue.push({tmp.first + 1, tmp.second});
-            }
-
-            if (tmp.first == 0 && tmp.second + 1 < m) {
-                queue.push({tmp.first, tmp.second + 1});
-            }
+            res.push_back({tmp.second.first, tmp.second.second});
         }
 
         return res;
