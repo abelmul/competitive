@@ -5,23 +5,22 @@ using namespace std;
 class Solution
 {
  public:
-    void swap_till(vector<int> &nums, int &next_swap, int number)
+    void sortColors(vector<int>& nums)
     {
+        // use count sort
         auto size = nums.size();
+        int counter[] = {0, 0, 0};
 
-        for (int i = next_swap; i < size; ++i) {
-            if (nums[i] == number) {
-                swap(nums[next_swap], nums[i]);
-                ++next_swap;
-            }
+        for (auto n : nums) {
+            ++counter[n];
         }
-    }
-    void sortColors(vector<int> &nums)
-    {
-        int next_swap = 0;
 
-        swap_till(nums, next_swap, 0);
-        swap_till(nums, next_swap, 1);
-        // swap_till(nums, next_swap, 2);
+        for (auto i = 0, j = 0; i < size; ++i) {
+            while (counter[j] <= 0) {
+                ++j;
+            }
+            nums[i] = j;
+            --counter[j];
+        }
     }
 };
