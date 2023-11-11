@@ -1,38 +1,22 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        if len(s) <= 1:
-            return s
+        st = []
 
-        stack = []
-        length = len(s)
-        i = 0
-
-        while i < length:
-            stack.append(i)
-
+        for i in range(len(s)):
             if s[i] == "]":
-                j = -1
-                while stack and s[stack[-1]] != "[":
-                    j = stack.pop()
+                cs = []
+                while st[-1] != "[":
+                    cs.append(st.pop())
 
-                # remove "["
-                stack.pop()
+                st.pop()  # remove [
 
-                # get number
-                number = ""
-                while stack and 48 <= ord(s[stack[-1]]) <= 57:
-                    number += s[stack.pop()]
+                kstring = []
+                while st and st[-1].isdigit():
+                    kstring.append(st.pop())
 
-                number_len = len(number)
-                number = int(number[::-1])
+                st += int("".join(reversed(kstring))) * "".join(reversed(cs))
 
-                decoded = self.decodeString(s[j:i])
+            else:
+                st.append(s[i])
 
-                s = s[: j - number_len - 1] + number * decoded + s[i + 1 :]
-
-                length = len(s)
-                i = j - number_len - 2
-
-            i += 1
-
-        return s
+        return "".join(st)
