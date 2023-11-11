@@ -7,29 +7,25 @@ class Solution
  public:
     int numDecodings(string s)
     {
-        int size = s.size();
+        auto n = s.size();
 
-        vector<int> memo(size, -1);
+        int next = 0, next_next = 0;
+        int current = 1;
 
-        auto toNum = [](char x, char y) { return (x - '0') * 10 + (y - '0'); };
+        for (int i = n; i >= 0; --i) {
+            next_next = next;
+            next = current;
+            if (s[i] == '0') {
+                current = 0;
+            } else {
+                current = next;
 
-        function<int(int)> dp = [&](int i) {
-            if (i >= size)
-                return 1;
-            if (s[i] == '0')
-                return 0;
-
-            if (memo[i] == -1) {
-                memo[i] = dp(i + 1);
-
-                if (i + 1 < size && toNum(s[i], s[i + 1]) <= 26) {
-                    memo[i] += dp(i + 2);
+                if (i + 1 < n && (s[i] - '0') * 10 + (s[i + 1] - '0') <= 26) {
+                    current += next_next;
                 }
             }
+        }
 
-            return memo[i];
-        };
-
-        return dp(0);
+        return current;
     }
 };
