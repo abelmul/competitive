@@ -16,18 +16,21 @@ class Solution
  public:
     bool hasCycle(ListNode *head)
     {
-        auto tortoise = head;
-        auto hare = head;
+        unordered_set<ListNode *> nodes;
 
-        while (hare && hare->next && hare->next->next) {
-            hare = hare->next->next;
-            tortoise = tortoise->next;
+        bool res = false;
+        auto ptr = head;
 
-            if (hare == tortoise) {
+        while (ptr != nullptr) {
+            if (nodes.find(ptr) != nodes.end()) {
+                res = true;
                 break;
             }
+
+            nodes.insert(ptr);
+            ptr = ptr->next;
         }
 
-        return hare && hare->next && hare->next->next;
+        return res;
     }
 };
