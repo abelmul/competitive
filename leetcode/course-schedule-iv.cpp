@@ -8,46 +8,30 @@ class Solution
     vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisites,
                                      vector<vector<int>>& queries)
     {
+        vector<vector<int>> adjList(numCourses);
+        vector<vector<long long>> dist(numCourses, vector<long long>(numCourses, INT_MAX));
+
         vector<bool> res;
-
-        vector<int> indegree(numCourses);
-        unordered_map<int, set<int>> prereqs;
-        unordered_map<int, vector<int>> adjList;
-        deque<int> queue;
-
-        res.reserve(queries.size());
 
         for (auto p : prerequisites) {
             adjList[p[0]].push_back(p[1]);
-            ++indegree[p[1]];
+            dist[p[0]][p[1]] = 1;
         }
 
-        // topological sort
         for (auto i = 0; i < numCourses; ++i) {
-            if (indegree[i] == 0) {
-                queue.emplace_back(i);
-                prereqs[i] = {};
-            }
+            dist[i][i] = 0;
         }
 
-        while (!queue.empty()) {
-            auto t = queue.front();
-            queue.pop_front();
-
-            for (auto i : adjList[t]) {
-                --indegree[i];
-                prereqs[i].insert(t);
-                prereqs[i].insert(prereqs[t].begin(), prereqs[t].end());
-
-                if (indegree[i] == 0) {
-                    queue.emplace_back(i);
+        for (auto k = 0; k < numCourses; ++k) {
+            for (auto i = 0; i < numCourses; ++i) {
+                for (auto j = 0; j < numCourses; ++j) {
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
                 }
             }
         }
 
-        // result
         for (auto q : queries) {
-            res.push_back(prereqs[q[1]].find(q[0]) != prereqs[q[1]].end());
+            res.push_back(dist[q[0]][q[1]] != INT_MAX);
         }
 
         return res;
