@@ -5,40 +5,38 @@ using namespace std;
 class Solution
 {
  public:
-    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start,
-                          int end)
+    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb,
+                          int start_node, int end_node)
     {
-        auto size = edges.size();
-        unordered_map<int, vector<pair<int, double>>> adjLIst;
+        vector<vector<pair<int, double>>> adjList(n);
+
         priority_queue<pair<double, int>> pq;
+        vector<double> res(n, 0);
 
-        unordered_set<int> visited;
+        double prob, node;
 
-        for (auto i = 0; i < size; ++i) {
-            adjLIst[edges[i][0]].emplace_back(edges[i][1], succProb[i]);
-            adjLIst[edges[i][1]].emplace_back(edges[i][0], succProb[i]);
+        for (auto i = 0; i < edges.size(); ++i) {
+            adjList[edges[i][0]].emplace_back(edges[i][1], succProb[i]);
+            adjList[edges[i][1]].emplace_back(edges[i][0], succProb[i]);
         }
 
-        pq.emplace(1, start);
+        pq.emplace(1, start_node);
 
         while (!pq.empty()) {
-            auto t = pq.top();
+            tie(prob, node) = pq.top();
             pq.pop();
 
-            if (visited.find(t.second) != visited.end())
+            if (res[node] > 0) {
                 continue;
-
-            visited.insert(t.second);
-
-            if (t.second == end) {
-                return t.first;
             }
 
-            for (auto n : adjLIst[t.second]) {
-                pq.emplace(t.first * n.second, n.first);
+            res[node] = prob;
+
+            for (auto n : adjList[node]) {
+                pq.emplace(prob * n.second, n.first);
             }
         }
 
-        return 0;
+        return res[end_node];
     }
 };
